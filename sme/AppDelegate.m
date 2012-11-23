@@ -21,11 +21,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
     // Override point for customization after application launch.
+    
+    // push notification related
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
      [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
     
+    // root view controller related
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;
     
@@ -86,10 +91,6 @@
 // Delegation methods
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken
 {
-    //const void *devTokenBytes = [devToken bytes];
-    //self.registered = YES;
-    //[self sendProviderDeviceToken:devTokenBytes]; // custom method
-    
     NSString *pushToken = [self hexString:devToken];
     
     if(pushToken)
