@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) ViewController *viewController;
 
+@property (assign, nonatomic) BOOL showHomePage;
+
 @end

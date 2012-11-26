@@ -14,4 +14,6 @@
 
 @property (retain, nonatomic) IBOutlet UIWebView *myWebView;
 
+- (void)loadHomePage:(BOOL)delayLoadingMessage;
+
 @end

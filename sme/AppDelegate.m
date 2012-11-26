@@ -36,10 +36,9 @@
     // Create tracker instance.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-36595007-1"];
     
-    
     // push notification related
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     // root view controller related
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
@@ -120,6 +119,17 @@
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
 {
     NSLog(@"Error in registration. Error: %@", err);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    /*
+    if([self.window.rootViewController isKindOfClass:[ViewController class]] == YES && application.applicationState == UIApplicationStateInactive)
+    {
+        ViewController *vc = (ViewController *)self.window.rootViewController;
+        [vc loadHomePage:NO];
+    }
+     */
 }
 
 @end
