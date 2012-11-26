@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate>
+
+@interface ViewController : GAITrackedViewController <UIWebViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIWebView *myWebView;
 

@@ -20,6 +20,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.trackedViewName = @"Main Screen(web view)";
+    
     [self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mobile.smelearning.org.tw"]]];
 }
 

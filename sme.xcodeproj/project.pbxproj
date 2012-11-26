@@ -22,6 +22,9 @@
 		969FEE0C165E31E300F8D697 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FEE0B165E31E300F8D697 /* AppDelegate.m */; };
 		969FEE15165E31E300F8D697 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FEE14165E31E300F8D697 /* ViewController.m */; };
 		969FEE18165E31E300F8D697 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969FEE16165E31E300F8D697 /* ViewController.xib */; };
+		96EB315E16632ED600DE579C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB315D16632ED600DE579C /* libGoogleAnalytics.a */; };
+		96EB316116632EFA00DE579C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB316016632EFA00DE579C /* CoreData.framework */; };
+		96EB31631663300200DE579C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB31621663300200DE579C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,14 @@
 		969FEE13165E31E300F8D697 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		969FEE14165E31E300F8D697 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		969FEE17165E31E300F8D697 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		96EB315816632ED600DE579C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		96EB315916632ED600DE579C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		96EB315A16632ED600DE579C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		96EB315B16632ED600DE579C /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		96EB315C16632ED600DE579C /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		96EB315D16632ED600DE579C /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		96EB316016632EFA00DE579C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		96EB31621663300200DE579C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +64,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96EB31631663300200DE579C /* SystemConfiguration.framework in Frameworks */,
+				96EB316116632EFA00DE579C /* CoreData.framework in Frameworks */,
 				969FEDFC165E31E300F8D697 /* UIKit.framework in Frameworks */,
 				969FEDFE165E31E300F8D697 /* Foundation.framework in Frameworks */,
 				969FEE00165E31E300F8D697 /* CoreGraphics.framework in Frameworks */,
+				96EB315E16632ED600DE579C /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +90,7 @@
 		96195F6C165E4CDA00FC63B1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				96EB315716632ED600DE579C /* GoogleAnalytics */,
 				96195F66165E4CD400FC63B1 /* SVProgressHUD */,
 			);
 			name = Library;
@@ -107,9 +122,11 @@
 		969FEDFA165E31E300F8D697 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				969FEDFB165E31E300F8D697 /* UIKit.framework */,
-				969FEDFD165E31E300F8D697 /* Foundation.framework */,
+				96EB316016632EFA00DE579C /* CoreData.framework */,
 				969FEDFF165E31E300F8D697 /* CoreGraphics.framework */,
+				969FEDFD165E31E300F8D697 /* Foundation.framework */,
+				96EB31621663300200DE579C /* SystemConfiguration.framework */,
+				969FEDFB165E31E300F8D697 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +153,20 @@
 				969FEE09165E31E300F8D697 /* sme-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96EB315716632ED600DE579C /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				96EB315816632ED600DE579C /* GAI.h */,
+				96EB315916632ED600DE579C /* GAITrackedViewController.h */,
+				96EB315A16632ED600DE579C /* GAITracker.h */,
+				96EB315B16632ED600DE579C /* GAITransaction.h */,
+				96EB315C16632ED600DE579C /* GAITransactionItem.h */,
+				96EB315D16632ED600DE579C /* libGoogleAnalytics.a */,
+			);
+			name = GoogleAnalytics;
+			path = Library/GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,12 +323,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TSAI CHIH CHAO (53XUM954FS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sme/sme-Prefix.pch";
 				INFOPLIST_FILE = "sme/sme-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Library/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = sme;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CC922B6-3F63-4B4C-BCA7-9E7402CD8EB1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -306,12 +341,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TSAI CHIH CHAO (53XUM954FS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sme/sme-Prefix.pch";
 				INFOPLIST_FILE = "sme/sme-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Library/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = sme;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CC922B6-3F63-4B4C-BCA7-9E7402CD8EB1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
