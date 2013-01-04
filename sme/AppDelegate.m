@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
+
 #import "ViewController.h"
-#import "GAI.h"
+#import "HomeViewController.h"
 
 @implementation AppDelegate
 
@@ -21,29 +22,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    
     // Override point for customization after application launch.
+     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+    HomeViewController *home=[[[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil] autorelease];
     
-    // Google Analytics related
-    // Optional: automatically track uncaught exceptions with Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 20;
-    // Optional: set debug to YES for extra debugging information.
-    [GAI sharedInstance].debug = NO;
-    // Create tracker instance.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-36595007-1"];
+    UINavigationController *nav=[[[UINavigationController alloc] initWithRootViewController:home] autorelease];
+    nav.navigationBarHidden=YES;
     
-    // push notification related
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-    // root view controller related
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
-    self.window.rootViewController = self.viewController;
-    
+    //self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -58,6 +47,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    exit(0);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -68,7 +58,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -102,6 +91,10 @@
 // Delegation methods
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken
 {
+    //const void *devTokenBytes = [devToken bytes];
+    //self.registered = YES;
+    //[self sendProviderDeviceToken:devTokenBytes]; // custom method
+    
     NSString *pushToken = [self hexString:devToken];
     
     if(pushToken)
@@ -111,25 +104,13 @@
             NSString *urlString = [NSString stringWithFormat:@"http://mobile.smelearning.org.tw/admin/app/MngSys/AddToken.aspx?OS=ios&Token=%@", pushToken];
             
             [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-        });
-        
+        });        
     }
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
 {
     NSLog(@"Error in registration. Error: %@", err);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    /*
-    if([self.window.rootViewController isKindOfClass:[ViewController class]] == YES && application.applicationState == UIApplicationStateInactive)
-    {
-        ViewController *vc = (ViewController *)self.window.rootViewController;
-        [vc loadHomePage:NO];
-    }
-     */
 }
 
 @end

@@ -7,13 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+#import "WebDelegate.h"
 
-
-@interface ViewController : GAITrackedViewController <UIWebViewDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate,WebDelegate>{
+    
+    NSString *myUrl;
+    NSString *page;
+}
 
 @property (retain, nonatomic) IBOutlet UIWebView *myWebView;
+@property (retain, nonatomic) IBOutlet UIView *topView;
+@property (retain, nonatomic) NSString *page;
+@property (retain, nonatomic) NSString *myUrl;
+@property (retain, nonatomic) IBOutlet UILabel *navText;
 
-- (void)loadHomePage:(BOOL)delayLoadingMessage;
+- (id)initWithUrl:(NSString *)url;
+- (IBAction)homeView:(id)sender;
+- (IBAction)goBack:(id)sender;
 
 @end
